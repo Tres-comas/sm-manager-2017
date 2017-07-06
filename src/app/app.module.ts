@@ -5,6 +5,7 @@ import { AppStore, createAppStoreFactoryWithOptions } from 'angular2-redux';
 import {AppState, initialState, Sprint, SprintState, WorkState} from './states/app-states';
 import { Action, Reducer } from 'redux';
 import { StartAction, StopAction } from './actions/actions';
+import { PlanningViewComponent } from './planning-view/planning-view.component';
 
 function clamp(a, b, c) {
   return Math.max(b, Math.min(c, a));
@@ -41,15 +42,18 @@ export const loggerMiddleware = store => next => action => {
 };
 
 // create app store factory
-export const appStoreFactory = createAppStoreFactoryWithOptions({
-  reducers: { reducer },
-  additionalMiddlewares: [loggerMiddleware],
-  debug: true // accepts a function as well
-});
+export function appStoreFactory() {
+  return createAppStoreFactoryWithOptions({
+    reducers: { reducer },
+    additionalMiddlewares: [loggerMiddleware],
+    debug: true // accepts a function as well
+  });
+}
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlanningViewComponent
   ],
   imports: [
     BrowserModule
