@@ -1,0 +1,19 @@
+<div *ngIf="isPlanningState()">
+  <button (click)="startSprint()">
+  Start
+  </button>
+</div>
+
+<div *ngIf="isWorkingState()">
+  Working...
+</div>
+
+<div *ngIf="isClosingState()">
+  <button (click)="goToRetro()">
+    Close
+  </button>
+</div>
+
+<div *ngIf="isRetroState()">
+  Retro
+</div>
