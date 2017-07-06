@@ -4,8 +4,10 @@ import { AppComponent } from './app.component';
 import { AppStore, createAppStoreFactoryWithOptions } from 'angular2-redux';
 import {AppState, initialState, Sprint, SprintState, WorkState} from './states/app-states';
 import { Action, Reducer } from 'redux';
-import { StartAction, StopAction } from './actions/actions';
 import { PlanningViewComponent } from './planning-view/planning-view.component';
+import { RetroAction, StartAction, StopAction } from './actions/actions';
+
+let sprint: Sprint;
 
 function clamp(a, b, c) {
   return Math.max(b, Math.min(c, a));
@@ -16,10 +18,10 @@ export const reducer: Reducer<AppState> =
     const newState: AppState = Object.assign({}, state);
     switch (action.type) {
       case 'START_SPRINT':
-        const sprint: Sprint = (<StartAction>action).sprint;
-        sprint.stories = (<StartAction>action).stories;
-        sprint.state = SprintState.Started;
-        newState.sprints.push(sprint);
+        this.sprint = (<StartAction>action).sprint;
+        this.sprint.stories = (<StartAction>action).stories;
+        this.sprint.state = SprintState.Started;
+        newState.sprints.push(this.sprint);
         newState.workState = WorkState.Working;
         return newState;
       case 'FINISH_SPRINT':
@@ -28,6 +30,7 @@ export const reducer: Reducer<AppState> =
         newState.happiness = clamp(5, 1, newState.happiness);
         return newState;
       case 'RETROSPECT':
+        this.sprint = (<RetroAction>action).sprint;
         newState.workState = WorkState.Retro;
         return newState;
       default:

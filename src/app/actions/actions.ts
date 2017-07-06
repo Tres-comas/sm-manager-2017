@@ -11,5 +11,5 @@ export interface StopAction extends Action {
 }
 
 export interface RetroAction extends Action {
-
+  sprint: Sprint;
 }
