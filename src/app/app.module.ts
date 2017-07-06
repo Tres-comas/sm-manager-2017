@@ -58,7 +58,7 @@ export function appStoreFactory() {
   imports: [
     BrowserModule
   ],
-  providers: [{provide: AppStore, useFactory: appStoreFactory}],
+  providers: [{provide: AppStore, useFactory: appStoreFactory()}],
   bootstrap: [AppComponent]
 })
 

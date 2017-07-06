@@ -9,8 +9,6 @@ import {RetroAction, StartAction, StopAction} from './actions/actions';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-
   constructor(@Inject(AppStore) private appStore: AppStore) {}
 
   startSprint() {
