@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AppStore } from 'angular2-redux';
-import { SprintState } from '../states/app-states';
+import {SprintState, Story} from '../states/app-states';
 import { StartAction, StopAction } from '../actions/actions';
 
 @Component({
@@ -9,10 +9,12 @@ import { StartAction, StopAction } from '../actions/actions';
   styleUrls: ['./planning-view.component.sass']
 })
 export class PlanningViewComponent implements OnInit {
+  public storiesInBacklog: Story[];
 
   constructor(@Inject(AppStore) private appStore: AppStore) { }
 
   ngOnInit() {
+    this.storiesInBacklog = this._getStories();
   }
 
   startSprint() {
@@ -48,9 +50,29 @@ export class PlanningViewComponent implements OnInit {
       {
         title: 'First',
         estimate: 3
+      },
+      {
+        title: 'First',
+        estimate: 3
+      },
+      {
+        title: 'First',
+        estimate: 3
+      },
+      {
+        title: 'First',
+        estimate: 3
+      },
+      {
+        title: 'First',
+        estimate: 3
+      },
+      {
+        title: 'First',
+        estimate: 3
       }
     ];
 
-    return stories;
+    return stories as Story[];
   }
 }
