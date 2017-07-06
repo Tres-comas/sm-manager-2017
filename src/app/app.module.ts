@@ -6,6 +6,7 @@ import {AppState, initialState, Sprint, SprintState, WorkState} from './states/a
 import { Action, Reducer } from 'redux';
 import { PlanningViewComponent } from './planning-view/planning-view.component';
 import { RetroAction, StartAction, StopAction } from './actions/actions';
+import {SprintViewComponent} from "./sprint-view/sprint-view.component";
 
 let sprint: Sprint;
 
@@ -33,6 +34,7 @@ export const reducer: Reducer<AppState> =
         this.sprint = (<RetroAction>action).sprint;
         newState.workState = WorkState.Retro;
         return newState;
+      case 'START_PLANNING':
       default:
         return initialState;
     }
@@ -56,7 +58,8 @@ export function appStoreFactory() {
 @NgModule({
   declarations: [
     AppComponent,
-    PlanningViewComponent
+    PlanningViewComponent,
+    SprintViewComponent
   ],
   imports: [
     BrowserModule

@@ -13,3 +13,7 @@ export interface StopAction extends Action {
 export interface RetroAction extends Action {
   sprint: Sprint;
 }
+
+export interface PlanningAction extends Action {
+
+}
