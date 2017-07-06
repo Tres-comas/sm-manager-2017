@@ -50,7 +50,7 @@ export function appStoreFactory() {
     reducers: { reducer },
     additionalMiddlewares: [loggerMiddleware],
     debug: true // accepts a function as well
-  });
+  })();
 }
 
 @NgModule({
@@ -61,7 +61,7 @@ export function appStoreFactory() {
   imports: [
     BrowserModule
   ],
-  providers: [{provide: AppStore, useFactory: appStoreFactory()}],
+  providers: [{provide: AppStore, useFactory: appStoreFactory}],
   bootstrap: [AppComponent]
 })
 
