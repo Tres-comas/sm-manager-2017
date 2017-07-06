@@ -35,7 +35,7 @@ export const reducer: Reducer<AppState> =
 };
 
 // my logger middleware
-const loggerMiddleware = store => next => action => {
+export const loggerMiddleware = store => next => action => {
   console.log('dispatching', action);
   return next(action);
 };
