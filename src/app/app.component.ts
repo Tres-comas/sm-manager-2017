@@ -20,12 +20,7 @@ export class AppComponent {
       deliveredPoints: 0
     };
 
-    const stories = [
-      {
-        title: 'First',
-        estimate: 3
-      }
-    ];
+    const stories = this.getStories();
 
     this.appStore.dispatch({
       type: 'START_SPRINT',
@@ -47,9 +42,27 @@ export class AppComponent {
   }
 
   goToRetro() {
+    const sprint = {
+      stories: [],
+      state: SprintState.Finished,
+      deliveredPoints: this.getStories().map(item => item.estimate)[0]
+    };
+
     this.appStore.dispatch({
-      type: 'RETROSPECT'
+      type: 'RETROSPECT',
+      sprint
     } as RetroAction )
+  }
+
+  getStories() {
+    const stories = [
+      {
+        title: 'First',
+        estimate: 3
+      }
+    ];
+
+    return stories;
   }
 
   isPlanningState() {

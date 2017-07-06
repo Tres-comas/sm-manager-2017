@@ -21,7 +21,7 @@ export interface Sprint {
 export enum WorkFlow {
   Open,
   InProgress,
-  Successful,
+  Successful
 }
 
 export enum SprintState {
