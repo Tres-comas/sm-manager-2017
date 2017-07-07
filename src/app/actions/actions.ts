@@ -15,5 +15,6 @@ export interface RetroAction extends Action {
 }
 
 export interface PlanningAction extends Action {
-
+  velocityDelta: number;
+  happinessDelta: number;
 }

@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AppStore } from 'angular2-redux';
 import {SprintState, Story} from '../states/app-states';
-import { StartAction, StopAction } from '../actions/actions';
+import { StartAction } from '../actions/actions';
 
 @Component({
   selector: 'app-planning-view',
@@ -31,18 +31,6 @@ export class PlanningViewComponent implements OnInit {
       sprint,
       stories
     } as StartAction );
-
-    setTimeout(() => {
-      this.finishSprint();
-    }, 2000);
-  }
-
-  finishSprint() {
-    const happinessDelta = Math.random() * 2 - 1;
-    this.appStore.dispatch({
-      type: 'FINISH_SPRINT',
-      happinessDelta
-    } as StopAction );
   }
 
   private _getStories() {

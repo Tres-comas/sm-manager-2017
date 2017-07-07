@@ -5,10 +5,11 @@ import { AppStore, createAppStoreFactoryWithOptions } from 'angular2-redux';
 import {AppState, initialState, Sprint, SprintState, WorkState} from './states/app-states';
 import { Action, Reducer } from 'redux';
 import { PlanningViewComponent } from './planning-view/planning-view.component';
-import { RetroAction, StartAction, StopAction } from './actions/actions';
-import {SprintViewComponent} from "./sprint-view/sprint-view.component";
-
-let sprint: Sprint;
+import {PlanningAction, RetroAction, StartAction, StopAction} from './actions/actions';
+import {SprintViewComponent} from './sprint-view/sprint-view.component';
+import { ClosingViewComponent } from './closing-view/closing-view.component';
+import { RetroViewComponent } from './retro-view/retro-view.component';
+import { StateOverviewComponent } from './state-overview/state-overview.component';
 
 function clamp(a, b, c) {
   return Math.max(b, Math.min(c, a));
@@ -35,8 +36,16 @@ export const reducer: Reducer<AppState> =
         newState.workState = WorkState.Retro;
         return newState;
       case 'START_PLANNING':
+        newState.happiness += (<PlanningAction>action).happinessDelta;
+        newState.velocity += (<PlanningAction>action).velocityDelta;
+        newState.workState = WorkState.Planning;
+        newState.happiness = clamp(5, 1, newState.happiness);
+        if (newState.velocity < 0) {
+          newState.velocity = 0;
+        }
+        return newState;
       default:
-        return initialState;
+        return state;
     }
 };
 
@@ -59,7 +68,10 @@ export function appStoreFactory() {
   declarations: [
     AppComponent,
     PlanningViewComponent,
-    SprintViewComponent
+    SprintViewComponent,
+    ClosingViewComponent,
+    RetroViewComponent,
+    StateOverviewComponent
   ],
   imports: [
     BrowserModule

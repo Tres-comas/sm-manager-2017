@@ -9,20 +9,7 @@ import { RetroAction } from './actions/actions';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(@Inject(AppStore) private appStore: AppStore) {}
-
-  goToRetro() {
-    const sprint = {
-      stories: [],
-      state: SprintState.Finished,
-      deliveredPoints: this._getStories().map(item => item.estimate)[0]
-    };
-
-    this.appStore.dispatch({
-      type: 'RETROSPECT',
-      sprint
-    } as RetroAction )
-  }
+  constructor(@Inject(AppStore) public appStore: AppStore) {}
 
   isPlanningState() {
     return this.appStore.getState().reducer.workState === WorkState.Planning;
@@ -38,17 +25,6 @@ export class AppComponent {
 
   isRetroState() {
     return this.appStore.getState().reducer.workState === WorkState.Retro;
-  }
-
-  private _getStories() {
-    const stories = [
-      {
-        title: 'First',
-        estimate: 3
-      }
-    ];
-
-    return stories;
   }
 }
 

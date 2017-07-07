@@ -7,11 +7,11 @@
 </div>
 
 <div *ngIf="isClosingState()">
-  <button (click)="goToRetro()">
-    Close
-  </button>
+  <app-closing-view></app-closing-view>
 </div>
 
 <div *ngIf="isRetroState()">
-  Retro
+  <app-retro-view></app-retro-view>
 </div>
+
+<div *ngIf="appStore.getState().reducer.sprints.length">Sprints list TODO</div>
