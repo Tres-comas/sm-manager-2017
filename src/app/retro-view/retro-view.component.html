@@ -1,12 +1,15 @@
-<div>
-  <input type="radio" value="1" />
-  <span>Action Item 1</span>
-</div>
+<h1>Retrospective</h1>
+<form>
+  <div>
+    <input type="radio" name="selectedActionItem" value="1" />
+    <span>Action Item 1</span>
+  </div>
 
-<div>
-  <input type="radio" value="2" />
-  <span>Action Item 2</span>
-</div>
+  <div>
+    <input type="radio" name="selectedActionItem" value="2" />
+    <span>Action Item 2</span>
+  </div>
+</form>
 
 <button (click)="goToPlanning()">
   Plan new sprint
