@@ -1,8 +1,14 @@
 export interface AppState {
-  velocity: number;
-  happiness: number;
   stories: Story[];
   sprints: Sprint[];
+}
+
+export interface TeamStatState {
+  velocity: number;
+  happiness: number;
+}
+
+export interface AppWorkState {
   workState: WorkState;
 }
 
@@ -38,9 +44,15 @@ export enum WorkState {
 }
 
 export const initialState: AppState = {
-  velocity: Math.floor(Math.random() * 6) + 10,
-  happiness: Math.floor(Math.random() * 4) + 1,
   stories: [],
-  sprints: [],
+  sprints: []
+};
+
+export const initialTeamStatState: TeamStatState = {
+  velocity: Math.floor(Math.random() * 6) + 10,
+  happiness: Math.floor(Math.random() * 4) + 1
+};
+
+export const initialWorkState: AppWorkState = {
   workState: WorkState.Planning
 };

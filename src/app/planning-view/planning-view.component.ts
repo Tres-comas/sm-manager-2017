@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { AppStore } from 'angular2-redux';
-import {SprintState, Story} from '../states/app-states';
-import { StartAction } from '../actions/actions';
+import {SprintState, Story, WorkState} from '../states/app-states';
+import {StartAction, WorkStateAction} from '../actions/actions';
 
 @Component({
   selector: 'app-planning-view',
@@ -31,6 +31,10 @@ export class PlanningViewComponent implements OnInit {
       sprint,
       stories
     } as StartAction );
+    this.appStore.dispatch({
+      type: 'CHANGE_WORK_STATE',
+      newWorkState: WorkState.Working
+    } as WorkStateAction);
   }
 
   private _getStories() {

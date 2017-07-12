@@ -14,4 +14,6 @@
   <app-retro-view></app-retro-view>
 </div>
 
-<div *ngIf="appStore.getState().reducer.sprints.length">Sprints list TODO</div>
+<div *ngIf="appStore.getState().reducer.sprints.length">
+  <app-state-overview></app-state-overview>
+</div>

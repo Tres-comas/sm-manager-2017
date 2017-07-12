@@ -1,3 +1,6 @@
-<p>
-  state-overview works!
-</p>
+<div class="sprint-overview-container">
+  <div *ngFor="let sprint of sprints">
+    <span>Sprint state: {{ sprint.state }}</span>
+    <span>Delivered points: {{ sprint.deliveredPoints }}</span>
+  </div>
+</div>

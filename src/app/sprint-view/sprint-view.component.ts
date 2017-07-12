@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {StopAction} from '../actions/actions';
+import { TeamStatChangeAction, WorkStateAction } from '../actions/actions';
 import {AppStore} from 'angular2-redux';
+import {WorkState} from '../states/app-states';
 
 @Component({
   selector: 'app-sprint-view',
@@ -20,8 +21,13 @@ export class SprintViewComponent implements OnInit {
   finishSprint() {
     const happinessDelta = Math.random() * 2 - 1;
     this.appStore.dispatch({
-      type: 'FINISH_SPRINT',
-      happinessDelta
-    } as StopAction );
+      type: 'CHANGE_TEAM_STAT',
+      happinessDelta,
+      velocityDelta: 0
+    } as TeamStatChangeAction );
+    this.appStore.dispatch({
+      type: 'CHANGE_WORK_STATE',
+      newWorkState: WorkState.Closing
+    } as WorkStateAction);
   }
 }

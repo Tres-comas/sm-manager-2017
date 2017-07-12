@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {SprintState} from '../states/app-states';
-import {RetroAction} from '../actions/actions';
+import {SprintState, WorkState} from '../states/app-states';
+import {RetroAction, WorkStateAction} from '../actions/actions';
 import {AppStore} from 'angular2-redux';
 
 @Component({
@@ -25,7 +25,11 @@ export class ClosingViewComponent implements OnInit {
     this.appStore.dispatch({
       type: 'RETROSPECT',
       sprint
-    } as RetroAction )
+    } as RetroAction );
+    this.appStore.dispatch({
+      type: 'CHANGE_WORK_STATE',
+      newWorkState: WorkState.Retro
+    } as WorkStateAction);
   }
 
   private _getStories() {
