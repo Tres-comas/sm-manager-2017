@@ -18,8 +18,8 @@ export class RetroViewComponent implements OnInit {
   goToPlanning() {
     this.appStore.dispatch({
       type: 'CHANGE_TEAM_STAT',
-      velocityDelta: 1,
-      happinessDelta: -1
+      velocityDelta: Math.random() * 4 - 2,
+      happinessDelta: Math.random() * 2 - 1
     } as TeamStatChangeAction);
     this.appStore.dispatch({
       type: 'CHANGE_WORK_STATE',

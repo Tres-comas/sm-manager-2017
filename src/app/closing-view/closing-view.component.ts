@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {SprintState, WorkState} from '../states/app-states';
-import {RetroAction, WorkStateAction} from '../actions/actions';
-import {AppStore} from 'angular2-redux';
+import { Component, Inject, OnInit } from '@angular/core';
+import { WorkState } from '../states/app-states';
+import { CloseSprintAction, WorkStateAction } from '../actions/actions';
+import { AppStore } from 'angular2-redux';
 
 @Component({
   selector: 'app-closing-view',
@@ -16,30 +16,19 @@ export class ClosingViewComponent implements OnInit {
   }
 
   goToRetro() {
-    const sprint = {
-      stories: [],
-      state: SprintState.Finished,
-      deliveredPoints: this._getStories().map(item => item.estimate)[0]
-    };
+    const sprintList = this.appStore.getState().reducer.sprints;
+    const sprint = sprintList[sprintList.length - 1];
+    const storyMax = sprint.stories.reduce((a, item) => a + item.estimate, 0);
+    const deliveredPoints = Math.min(Math.floor(this.appStore.getState().TeamStatReducer.velocity), storyMax);
 
     this.appStore.dispatch({
-      type: 'RETROSPECT',
-      sprint
-    } as RetroAction );
+      type: 'CLOSE_SPRINT',
+      sprint,
+      deliveredPoints
+    } as CloseSprintAction );
     this.appStore.dispatch({
       type: 'CHANGE_WORK_STATE',
       newWorkState: WorkState.Retro
     } as WorkStateAction);
-  }
-
-  private _getStories() {
-    const stories = [
-      {
-        title: 'First',
-        estimate: 3
-      }
-    ];
-
-    return stories;
   }
 }

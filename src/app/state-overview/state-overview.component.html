@@ -1,6 +1,6 @@
 <div class="sprint-overview-container">
   <div *ngFor="let sprint of sprints">
-    <span>Sprint state: {{ sprint.state }}</span>
+    <span>Committed points: {{ getStoriesSum(sprint) }}</span>
     <span>Delivered points: {{ sprint.deliveredPoints }}</span>
   </div>
 </div>

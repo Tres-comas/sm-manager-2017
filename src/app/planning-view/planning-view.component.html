@@ -1,7 +1,16 @@
-<h1>Planning Sprint 1</h1>
+<h1>Planning Sprint {{ storyNumber }}</h1>
 
-<div *ngFor="let story of storiesInBacklog">{{story.title}} | {{story.estimate}}</div>
+<div *ngFor="let story of storiesInBacklog">
+  <input type="checkbox" (change)="storyToggled($event, story)">
+  <span>{{story.estimate}} | {{story.title}}</span>
+</div>
 
+<br><br>
+
+<span>Current story points in sprint: {{cumulatedPoints}}</span>
+<br><br>
+
+<span>Yesterday's weather: {{teamVelocity}}</span>
 <br><br>
 
 <button (click)="startSprint()">

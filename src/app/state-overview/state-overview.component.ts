@@ -16,4 +16,7 @@ export class StateOverviewComponent implements OnInit {
     this.sprints = this.appStore.getState().reducer.sprints;
   }
 
+  getStoriesSum(sprint: Sprint) {
+    return sprint.stories.reduce((a, item) => a + item.estimate, 0);
+  }
 }

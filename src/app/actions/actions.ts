@@ -15,6 +15,7 @@ export interface StartAction extends Action {
   sprint: Sprint;
 }
 
-export interface RetroAction extends Action {
+export interface CloseSprintAction extends Action {
   sprint: Sprint;
+  deliveredPoints: number;
 }

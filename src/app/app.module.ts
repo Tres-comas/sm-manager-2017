@@ -6,7 +6,7 @@ import { AppState, AppWorkState, initialState, SprintState,
   initialWorkState, TeamStatState, initialTeamStatState } from './states/app-states';
 import { Action, Reducer } from 'redux';
 import { PlanningViewComponent } from './planning-view/planning-view.component';
-import { StartAction, TeamStatChangeAction, WorkStateAction } from './actions/actions';
+import { CloseSprintAction, StartAction, TeamStatChangeAction, WorkStateAction} from './actions/actions';
 import { SprintViewComponent } from './sprint-view/sprint-view.component';
 import { ClosingViewComponent } from './closing-view/closing-view.component';
 import { RetroViewComponent } from './retro-view/retro-view.component';
@@ -28,8 +28,10 @@ export const reducer: Reducer<AppState> =
         newState.sprints.push(sprint);
         return newState;
       }
-      case 'RETROSPECT':
-        // const sprint = (<RetroAction>action).sprint;
+      case 'CLOSE_SPRINT':
+        const sprint = (<CloseSprintAction>action).sprint;
+        sprint.state = SprintState.Finished;
+        sprint.deliveredPoints = (<CloseSprintAction>action).deliveredPoints;
         return newState;
       default:
         return state;
